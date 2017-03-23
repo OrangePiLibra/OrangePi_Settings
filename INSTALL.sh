@@ -52,6 +52,15 @@ LOCAL_CONFIG_FILE=Import_Envirnoment.sh
 
 ROOT=`pwd`
 
+# Platform 
+if [ -z $1 ]; then
+    echo "Please add plaform, as"
+    echo "./INSTALL.sh OrangePi_PC2" 
+    exit 0 
+else
+    echo $1 > ${INSTALL_PATH}/VERSION
+fi 
+
 # File check
 if [ ! -f ${ROOT}/${MAIN_FILE} ]; then
     echo "Abort! Losing ${MAIN_FILE}"
@@ -81,3 +90,4 @@ fi
 if [ ! -f ${BIN_PATH}/${BIN_NAME} ]; then
     ln -s ${INSTALL_PATH}/${MAIN_FILE} ${BIN_PATH}/${BIN_NAME} 
 fi
+
