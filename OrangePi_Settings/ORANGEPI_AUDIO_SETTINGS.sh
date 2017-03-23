@@ -57,7 +57,7 @@ function OrangePi_RDA_Audio_Settings()
 {
 
     OPTION=$(whiptail --title "${TITLE}" \
-        --menu " " 13 40 3 --cancel-button Exit --ok-button Select \
+        --menu " " 13 40 4 --cancel-button Exit --ok-button Select \
             "0"  "Player Option" \
             "1"  "Record Option" \
             "2"  "Testing Option" \
