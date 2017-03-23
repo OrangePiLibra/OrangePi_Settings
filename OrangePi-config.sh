@@ -16,7 +16,7 @@ ROOT="/usr/local/sbin"
 # -----------------------------------------
 # Import Global value
 # -----------------------------------------
-. ${ROOT}/OrangePi_Config/Import.sh
+. ${ROOT}/OrangePi_Settings/Import_Envirnoment.sh
 
 SLOOP=1
 while [ ${SLOOP} = "1" ]
