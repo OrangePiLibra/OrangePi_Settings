@@ -95,7 +95,7 @@ function OrangePi_RDA_Audio_Settings()
 
     whiptail --title "MessageBox" \
          --msgbox "Play Audio: aplay Aduio.wav         Record: arecord -d 10 -t wav Audio.wav" \
-                  10 20
+                  10 60
 
 }
 

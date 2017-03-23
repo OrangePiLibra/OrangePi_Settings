@@ -16,16 +16,6 @@ function OrangePi_RDA_WIFI()
     local _WIFI_PSD
     local _CONFIG_FILE=/etc/network/interfaces
 
-
-    if [ -f ${_CONFIG_FILE} ]; then
-        _SSID=`cat ${_CONFIG_FILE} | grep "ssid"`
-        if [ ! -z ${_SSID} ]; then
-            if (whiptail --title "${TITLE}" --yes-button "OK" --no-button "NO" --yesno "${_SSID} has exist! Do you want to connect this AP?" 10 60) then
-                exit 0
-            fi
-        fi
-    fi
-
     _WIFI_AP=$(whiptail --title "${TITLE}" \
                        --inputbox "Please input AP name" 10 60 \
                        3>&1 1>&2 2>&3)
@@ -50,7 +40,37 @@ EOF
                   10 60
 }
 
+# OrangePi wifi Setting
+function OrangePi_WIFI_Setting()
+{
+    OPTION=$(whiptail --title "${TITLE}" \
+            --menu " " 13 40 3 --cancel-button Exit --ok-button Select \
+            "0"  "Scanning WIFI AP" \
+            "1"  "Connect New AP" \
+            "2"  "Current WIFI info" \
+            3>&1 1>&2 2>&3)
+    
+    exitstatus=$?
+    if [ ${exitstatus} != 0 ]; then
+        clear
+        exit 0
+    fi
+
+    if [ ${OPTION} = 0 ]; then
+        iw wlan0 scan > .tmp
+        whiptail --textbox .tmp 12 80
+        rm .tmp
+    elif [ ${OPTION} = 1 ]; then
+        if [ ${PLATFORM} = "OrangePi_RDA" ]; then
+            OrangePi_RDA_WIFI
+        fi
+    elif [ ${OPTION} = 2 ]; then
+        iw wlan0 info > .tmp
+        whiptail --textbox .tmp 12 80
+        rm .tmp
+    fi
+}
+
+
 # Utilize 
-if [ ${PLATFORM} = "OrangePi_RDA" ]; then
-    OrangePi_RDA_WIFI
-fi
+OrangePi_WIFI_Setting
