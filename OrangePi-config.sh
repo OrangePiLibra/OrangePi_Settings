@@ -44,11 +44,9 @@ do
     if [ ${OPTION} = "0" ]; then
         # Wifi settings
         . ${ORANGEPI_WIFI_SETTINGS}
-        echo 0
     elif [ ${OPTION} = "1" ]; then
         # Audio settings
-        #. ${ORANGEPI_AUDIO_SETTING}
-        echo 0
+        . ${ORANGEPI_AUDIO_SETTINGS}
     elif [ ${OPTION} = "2" ]; then
 	    # Backup file or dirent
         # . ${BACKUP_FILE_DIRENT}
