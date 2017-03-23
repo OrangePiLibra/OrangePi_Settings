@@ -11,14 +11,12 @@
 
 # -------------------------------------------------------
 # Base path
-#ROOT="/usr/local/sbin"
+ROOT="/usr/local/sbin"
 
 # -----------------------------------------
 # Import Global value
 # -----------------------------------------
-#. ${ROOT}/OrangePi_Config/Import.sh
-VENDOR="OrangePi"
-TITLE="OrangePi Settings"
+. ${ROOT}/OrangePi_Config/Import.sh
 
 SLOOP=1
 while [ ${SLOOP} = "1" ]
