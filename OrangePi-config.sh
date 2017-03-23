@@ -46,10 +46,8 @@ do
         # Audio settings
         . ${ORANGEPI_AUDIO_SETTINGS}
     elif [ ${OPTION} = "2" ]; then
-	    # Backup file or dirent
-        # . ${BACKUP_FILE_DIRENT}
-	    # . ${DO_BACKUP}
-        echo 0
+	    # Camera settings
+        . ${ORANGEPI_CAMERA_SETTINGS}
     elif [ ${OPTION} = "3" ]; then
         # . ${ADD_NEW_FILE_DIRENT}
         echo 0

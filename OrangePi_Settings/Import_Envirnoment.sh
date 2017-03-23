@@ -41,7 +41,13 @@ TITLE="OrangePi Settings"
 TESTING_AUDIO=/usr/local/sbin/TestAudio.wav
 
 # ------------------------------------------
+#
+# ------------------------------------------
+CAMERA_DEVICE_PATH=/lib/modules/$(uname -r)/kernel
+
+# ------------------------------------------
 # Path scripts
 # ------------------------------------------
 ORANGEPI_WIFI_SETTINGS=${SETTINGS_PATH}/ORANGEPI_WIFI_SETTINGS.sh
 ORANGEPI_AUDIO_SETTINGS=${SETTINGS_PATH}/ORANGEPI_AUDIO_SETTINGS.sh
+ORANGEPI_CAMERA_SETTINGS=${SETTINGS_PATH}/ORANGEPI_CAMERA_SETTINGS.sh
