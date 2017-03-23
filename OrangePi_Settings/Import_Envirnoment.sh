@@ -36,6 +36,11 @@ PLATFORM=$(cat ${PLATFORM_VERSION})
 TITLE="OrangePi Settings"
 
 # ------------------------------------------
+# Testing Auido file
+# ------------------------------------------
+TESTING_AUDIO=/usr/local/sbin/TestAudio.wav
+
+# ------------------------------------------
 # Path scripts
 # ------------------------------------------
 ORANGEPI_WIFI_SETTINGS=${SETTINGS_PATH}/ORANGEPI_WIFI_SETTINGS.sh
