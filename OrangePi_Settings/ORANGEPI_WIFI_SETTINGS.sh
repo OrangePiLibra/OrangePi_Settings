@@ -58,7 +58,7 @@ function OrangePi_WIFI_Setting()
 
     if [ ${OPTION} = 0 ]; then
         iw wlan0 scan > .tmp
-        whiptail --textbox .tmp 12 80
+        whiptail --textbox --scrolltext .tmp 12 60
         rm .tmp
     elif [ ${OPTION} = 1 ]; then
         if [ ${PLATFORM} = "OrangePi_RDA" ]; then
@@ -66,7 +66,7 @@ function OrangePi_WIFI_Setting()
         fi
     elif [ ${OPTION} = 2 ]; then
         iw wlan0 info > .tmp
-        whiptail --textbox .tmp 12 80
+        whiptail --textbox --scrolltext .tmp 12 60
         rm .tmp
     fi
 }
