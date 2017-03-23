@@ -25,7 +25,7 @@ while [ ${SLOOP} = "1" ]
 do 
     # Main Menu
     OPTION=$(whiptail --title "${TITLE}" \
-        --menu " " 15 60 7 --cancel-button Exit --ok-button Select \
+        --menu " " 13 40 7 --cancel-button Exit --ok-button Select \
 	        "0"  "Wifi Settings" \
 		    "1"  "Audio Settings" \
 		    "2"  "Camera Settings" \
@@ -43,7 +43,7 @@ do
 
     if [ ${OPTION} = "0" ]; then
         # Wifi settings
-        #. ${ORANGEPI_WIFI_SETTINGS}
+        . ${ORANGEPI_WIFI_SETTINGS}
         echo 0
     elif [ ${OPTION} = "1" ]; then
         # Audio settings
