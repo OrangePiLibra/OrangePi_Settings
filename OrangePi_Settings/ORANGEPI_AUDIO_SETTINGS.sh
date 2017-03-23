@@ -40,6 +40,18 @@ function OrangePi_RDA_Audio_Record()
     amixer cset numid=8,iface=MIXER,name='StartRecord' 1
 }
 
+function OrangePi_RDA_Audio_ChangeVolume()
+{
+    # Record
+    if [ $1 = 0 ]; then
+        amixer cset numid=2,iface=MIXER,name='Capture Volume' $2
+    # Play
+    elif [ $1 = 1 ]; then
+        amixer cset numid=1,iface=MIXER,name='Playback Volume' $2
+    fi    
+    amixer cset numid=15,iface=MIXER,name='Commit Setup' 0
+}
+
 # Audio Setting for RDA
 function OrangePi_RDA_Audio_Settings()
 {
@@ -49,6 +61,7 @@ function OrangePi_RDA_Audio_Settings()
             "0"  "Player Option" \
             "1"  "Record Option" \
             "2"  "Testing Option" \
+            "3"  "Volume Option" \
             3>&1 1>&2 2>&3)
 
     exitstatus=$?
@@ -93,6 +106,21 @@ function OrangePi_RDA_Audio_Settings()
             OrangePi_RDA_Audio_Play "1"
             aplay ${TESTING_AUDIO}
         fi
+    elif [ ${OPTION} = "3" ]; then
+         _OPTION=$(whiptail --title "${TITLE}" \
+                 --menu " " 13 40 2 --cancel-button Exit --ok-button Select \
+                 "0"  "Change Capture Volume" \
+                 "1"  "Change Playback Volume" \
+                 3>&1 1>&2 2>&3)
+         _VOLUME=$(whiptail --title "Input Box" \
+                        --inputbox "Please Input Volume(1~8)" 10 60 \
+                                        3>&1 1>&2 2>&3)
+        if [ ${_OPTION} = 0 ]; then
+            OrangePi_RDA_Audio_ChangeVolume "0" ${_VOLUME}
+        elif [ ${_OPTION} = 1 ]; then
+            OrangePi_RDA_Audio_ChangeVolume "1" ${_VOLUME}
+        fi
+        
     fi
 
     whiptail --title "MessageBox" \
