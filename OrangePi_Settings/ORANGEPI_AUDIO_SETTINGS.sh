@@ -12,6 +12,7 @@
 # Audio Play on RDA
 function OrangePi_RDA_Audio_Play() 
 {
+    amixer cset numid=9,iface=MIXER,name='Stop' 1
     amixer cset numid=2,iface=MIXER,name='InChannelNumber' 1
     amixer cset numid=2,iface=MIXER,name='InSampleRate' 8000
     amixer cset numid=2,iface=MIXER,name='Capture Volume' 2
@@ -29,9 +30,10 @@ function OrangePi_RDA_Audio_Play()
 # Audio Record on RDA
 function OrangePi_RDA_Audio_Record()
 {
+    amixer cset numid=9,iface=MIXER,name='Stop' 1
     amixer cset numid=2,iface=MIXER,name='Capture Volume' 2
     amixer cset numid=3,iface=MIXER,name='ITF' $1
-    amixer cset numid=5,iface=MIXER,name='ForceMainMic'
+    amixer cset numid=5,iface=MIXER,name='ForceMainMic' 1
     amixer cset numid=6,iface=MIXER,name='CodecAppMode' 0
     amixer cset numid=12,iface=MIXER,name='InSampleRate' 16000
     amixer cset numid=13,iface=MIXER,name='InChannelNumber' 1
@@ -94,7 +96,7 @@ function OrangePi_RDA_Audio_Settings()
     fi
 
     whiptail --title "MessageBox" \
-         --msgbox "Play Audio: aplay Aduio.wav         Record: arecord -d 10 -t wav Audio.wav" \
+         --msgbox "Play Audio: aplay Aduio.wav                          Record: arecord -d 10 -t wav Audio.wav" \
                   10 60
 
 }
