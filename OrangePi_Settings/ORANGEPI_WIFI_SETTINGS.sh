@@ -64,7 +64,7 @@ function OrangePi_WIFI_Setting()
     elif [ ${OPTION} = 1 ]; then
         if [ ${PLATFORM} = "OrangePi_RDA" ]; then
             OrangePi_RDA_WIFI
-        elif [ ${OPTION} = "OrangePi_H5_ZeroPlus2" ]; then
+        elif [ ${PLATFORM} = "OrangePi_H5_ZeroPlus2" ]; then
             OrangePi_RDA_WIFI
         fi
     elif [ ${OPTION} = 2 ]; then
