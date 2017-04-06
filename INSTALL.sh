@@ -58,6 +58,9 @@ if [ -z $1 ]; then
     echo "./INSTALL.sh OrangePi_PC2" 
     exit 0 
 else
+    if [ ! -d ${INSTALL_PATH} ]; then
+        mkdir -p ${INSTALL_PATH}
+    fi
     echo $1 > ${INSTALL_PATH}/VERSION
 fi 
 
