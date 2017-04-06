@@ -9,6 +9,7 @@
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
+
 # OrangePi RDA WIFI settings
 function OrangePi_RDA_WIFI()
 {
@@ -62,6 +63,8 @@ function OrangePi_WIFI_Setting()
         rm .tmp
     elif [ ${OPTION} = 1 ]; then
         if [ ${PLATFORM} = "OrangePi_RDA" ]; then
+            OrangePi_RDA_WIFI
+        elif [ ${OPTION} = "OrangePi_H5_ZeroPlus2" ]; then
             OrangePi_RDA_WIFI
         fi
     elif [ ${OPTION} = 2 ]; then
