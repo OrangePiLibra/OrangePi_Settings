@@ -129,7 +129,99 @@ function OrangePi_RDA_Audio_Settings()
 
 }
 
+# ---------------------------------------------------------------
+# H5 Audio
+# ---------------------------------------------------------------
+# Play
+function OrangePi_H5_PlayAudio()
+{
+    AUDIO_PATH=$(whiptail --title "${TITLE}" \
+                          --inputbox "Please input path of wav file and plug headphone!" 10 60 \
+                          3>&1 1>&2 2>&3)    
+    aplay ${AUDIO_PATH}
+}
+
+# Record 
+function OrangePi_H5_Record()
+{
+    AUDIO_PATH=$(whiptail --title "${TITLE}" \
+                          --inputbox "Please input audio name and point to main MIC!" 10 60 \
+                                                        3>&1 1>&2 2>&3)   
+    AUDIO_TIME=$(whiptail --title "${TITLE}" \
+                          --inputbox "Please input record time" 10 60 \
+                                                        3>&1 1>&2 2>&3)   
+    arecord -d ${AUDIO_TIME} -f cd -t wav ${AUDIO_PATH}
+}
+
+function OrangePi_H5_AudioTesting()
+{
+    if [ $1 = 0 ]; then
+        aplay /usr/local/sbin/TestAudio.wav
+    elif [ $1 = 1 ]; then
+        arecord -d 3 -t wav -f cd .tmp.wav
+        aplay .tmp.wav
+        rm -rf .tmp.wav
+    fi    
+}
+
+# Set volume
+function OrangePi_Set_Volume()
+{
+    
+}
+
+function OrangePi_H5_Audio_Settings()
+{
+    OPTION=$(whiptail --title "${TITLE}" \
+        --menu " " 13 40 4 --cancel-button Exit --ok-button Select \
+            "0"  "Player Settings" \
+            "1"  "Record Settings" \
+            "2"  "Testing Settings" \
+            "3"  "Volume Settings" \
+            3>&1 1>&2 2>&3)
+
+    exitstatus=$?
+    if [ ${exitstatus} != 0 ]; then
+        clear
+        exit 0
+    fi
+    
+    if [ ${OPTION} = 0 ]; then
+         _OPTION=$(whiptail --title "${TITLE}" \
+                 --menu " " 13 40 2 --cancel-button Exit --ok-button Select \
+                 "0"  "Play with Headphone" \
+                 "1"  "Play Sound" \
+                 3>&1 1>&2 2>&3)
+         
+         if [ ${_OPTION} = 1 ]; then
+            OrangePi_H5_PlayAudio
+         fi
+    elif [ ${OPTION} = 1 ]; then
+         _OPTION=$(whiptail --title "${TITLE}" \
+                 --menu " " 13 40 2 --cancel-button Exit --ok-button Select \
+                 "0"  "Record with Main MIC" \
+                 "1"  "Record Sound" \
+                 3>&1 1>&2 2>&3)
+         if [ ${_OPTION} = 2 ]; then
+            OrangePi_H5_Record  
+         fi
+    elif [ ${OPTION} = 2 ]; then
+         _OPTION=$(whiptail --title "${TITLE}" \
+                 --menu " " 13 40 2 --cancel-button Exit --ok-button Select \
+                 "0"  "Testing Play" \
+                 "1"  "Testing Record" \
+                 3>&1 1>&2 2>&3)
+         if [ ${_OPTION} = 0 ]; then
+            OrangePi_H5_AudioTesting ${_OPTION}
+         fi
+    elif [ ${OPTION} = 3 ]; then
+        OrangePi_Set_Volume
+    fi
+}
+
 # Utilize 
 if [ ${PLATFORM} = "OrangePi_RDA" ]; then
     OrangePi_RDA_Audio_Settings
+elif [ ${PLATFORM} = "OrangePi_H5_ZeroPlus2" ]; then
+    OrangePi_H5_Audio_Settings
 fi
