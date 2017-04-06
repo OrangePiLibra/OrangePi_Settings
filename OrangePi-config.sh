@@ -52,7 +52,7 @@ do
         . ${ORANGEPI_GPIO_SETTINGS}
         echo 0
     elif [ ${OPTION} = "4" ]; then
-        # . ${DELETE_EXIST_FILE_DIRENT}
+        . ${ORANGEPI_STORAGE_SETTINGS}
         echo 0
     elif [ ${OPTION} = "5" ]; then
         # . ${UPDATE_CHANGE}
