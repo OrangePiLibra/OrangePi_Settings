@@ -74,6 +74,7 @@ function OrangePi_WIFI_Setting()
     fi
 }
 
+# source-directory /etc/network/interfaces.d
 
-# Utilize 
-OrangePi_WIFI_Setting
+# utilize 
+orangepi_wifi_setting

@@ -9,7 +9,9 @@
 # it under the terms of the GNU General Public License version 2 as
 # published by the Free Software Foundation.
 
-# OrangePi RDA WIFI settings
+# ---------------------------------------------
+# OrangePi RDA Camera
+# ---------------------------------------------
 function OrangePi_RDA_CAMERA_DEVICE()
 {
     OPTION=$(whiptail --title "${TITLE}" \
@@ -24,6 +26,32 @@ function OrangePi_RDA_CAMERA_DEVICE()
     fi
 }
 
+# ----------------------------------------------
+# OrangePi H5 Camera
+# ----------------------------------------------
+function OrangePi_H5_CAMERA_DEVICE()
+{
+    CAMER_CONFIG=/etc/modules-load.d/CAMERA.conf
+
+    OPTION=$(whiptail --title "${TITLE}" \
+                      --menu " " 13 40 1 --cancel-button Exit --ok-button Select \
+                      "0"  "GC2035" \
+                      3>&1 1>&2 2>&3)    
+    if [ ${OPTION} = 0 ]; then
+        modprobe gc2035
+        modprobe vfe_v4l2
+# Create wifi configure
+cat > "${CAMERA_CONFIG}" <<EOF
+#OrangePi Camera Load module
+videobuf2-core
+videobuf2-memops
+videobuf2-dma-contig
+vfe_io
+gc2035
+vfe_v4l2
+EOF
+    fi
+}
 # OrangePi wifi Setting
 function OrangePi_Camera_Setting()
 {
@@ -44,6 +72,8 @@ function OrangePi_Camera_Setting()
     if [ ${OPTION} = 0 ]; then
         if [ ${PLATFORM} = "OrangePi_RDA" ]; then
             OrangePi_RDA_CAMERA_DEVICE
+        elif [ ${PLATFORM} = "OrangePi_H5_ZeroPlus2"]
+            OrangePi_H5_CAMERA_DEVICE
         fi
     elif [ ${OPTION} = 1 ]; then
         /etc/init.d/motion start

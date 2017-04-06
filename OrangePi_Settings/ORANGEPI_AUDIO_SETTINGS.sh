@@ -158,16 +158,16 @@ function OrangePi_H5_AudioTesting()
     if [ $1 = 0 ]; then
         aplay /usr/local/sbin/TestAudio.wav
     elif [ $1 = 1 ]; then
-        arecord -d 3 -t wav -f cd .tmp.wav
-        aplay .tmp.wav
-        rm -rf .tmp.wav
+        arecord -d 3 -t wav -f cd tmp.wav
+        aplay tmp.wav
+        rm -rf tmp.wav
     fi    
 }
 
 # Set volume
 function OrangePi_Set_Volume()
 {
-    
+    echo "SB"    
 }
 
 function OrangePi_H5_Audio_Settings()
@@ -202,7 +202,7 @@ function OrangePi_H5_Audio_Settings()
                  "0"  "Record with Main MIC" \
                  "1"  "Record Sound" \
                  3>&1 1>&2 2>&3)
-         if [ ${_OPTION} = 2 ]; then
+         if [ ${_OPTION} = 1 ]; then
             OrangePi_H5_Record  
          fi
     elif [ ${OPTION} = 2 ]; then
@@ -211,9 +211,7 @@ function OrangePi_H5_Audio_Settings()
                  "0"  "Testing Play" \
                  "1"  "Testing Record" \
                  3>&1 1>&2 2>&3)
-         if [ ${_OPTION} = 0 ]; then
-            OrangePi_H5_AudioTesting ${_OPTION}
-         fi
+        OrangePi_H5_AudioTesting ${_OPTION}
     elif [ ${OPTION} = 3 ]; then
         OrangePi_Set_Volume
     fi
