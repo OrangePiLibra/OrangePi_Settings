@@ -49,7 +49,7 @@ do
 	    # Camera settings
         . ${ORANGEPI_CAMERA_SETTINGS}
     elif [ ${OPTION} = "3" ]; then
-        # . ${ADD_NEW_FILE_DIRENT}
+        . ${ORANGEPI_GPIO_SETTINGS}
         echo 0
     elif [ ${OPTION} = "4" ]; then
         # . ${DELETE_EXIST_FILE_DIRENT}
