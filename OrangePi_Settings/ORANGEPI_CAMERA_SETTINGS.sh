@@ -31,7 +31,7 @@ function OrangePi_RDA_CAMERA_DEVICE()
 # ----------------------------------------------
 function OrangePi_H5_CAMERA_DEVICE()
 {
-    CAMER_CONFIG=/etc/modules-load.d/CAMERA.conf
+    CAMERA_CONFIG=/etc/modules-load.d/CAMERA.conf
 
     OPTION=$(whiptail --title "${TITLE}" \
                       --menu " " 13 40 1 --cancel-button Exit --ok-button Select \
@@ -72,7 +72,7 @@ function OrangePi_Camera_Setting()
     if [ ${OPTION} = 0 ]; then
         if [ ${PLATFORM} = "OrangePi_RDA" ]; then
             OrangePi_RDA_CAMERA_DEVICE
-        elif [ ${PLATFORM} = "OrangePi_H5_ZeroPlus2"]
+        elif [ ${PLATFORM} = "OrangePi_H5_ZeroPlus2" ]; then
             OrangePi_H5_CAMERA_DEVICE
         fi
     elif [ ${OPTION} = 1 ]; then
