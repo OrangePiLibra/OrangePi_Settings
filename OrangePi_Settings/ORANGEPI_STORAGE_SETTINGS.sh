@@ -34,7 +34,7 @@ function OrangePi_Storage_MENU()
                     --msgbox "ERROR! can't operate on SDcard mode" \
                                                      10 60
         fi
-        ./usr/local/sbin/OrangePi_FormatEMMC.sh
+        . /usr/local/sbin/OrangePi_FormatEMMC.sh
         if [ ! -d /media/EMMC ]; then
             mkdir -p /media/EMMC
         fi
@@ -60,7 +60,7 @@ EOF
                     --msgbox "ERROR! can't operate on SDcard mode" \
                                                      10 60
         fi
-        ./usr/local/sbin/OrangePi_Install_OrangePi_2_EMMC.sh
+        . /usr/local/sbin/OrangePi_Install_OrangePi_2_EMMC.sh
         reboot
     fi
 }
